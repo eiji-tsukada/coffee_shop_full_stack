@@ -133,7 +133,7 @@ def edit_drink(payload, drink_id):
         return jsonify({
             'success': True,
             'drinks': [drink.long()]
-        })
+        }), 200
 
     except:
         abort(422)

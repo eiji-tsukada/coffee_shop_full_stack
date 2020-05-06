@@ -86,7 +86,7 @@ def create_drink(payload):
     try:
         drink = Drink(
             title=new_title,
-            recipe=json.dumps([new_recipe])
+            recipe=json.dumps(new_recipe)
         )
         drink.insert()
 
@@ -127,13 +127,13 @@ def edit_drink(payload, drink_id):
             drink.title = title
         if recipe is not None:
             drink.recipe = recipe
-        
+
         drink.update()
 
         return jsonify({
             'success': True,
             'drinks': [drink.long()]
-        })
+        }), 200
 
     except:
         abort(422)
@@ -156,7 +156,7 @@ def delete_drink(payload, drink_id):
         drink = Drink.query.filter_by(id=drink_id).one_or_none()
         if drink is None:
             abort(404)
-        
+
         drink.delete()
 
         return jsonify({
@@ -207,14 +207,6 @@ def unauthorized(error):
         'message': 'unauthorized'
     }), 401
 
-
-@app.errorhandler(403)
-def forbidden(error):
-    return jsonify({
-        'success': False,
-        'error': 403,
-        'message': 'forbidden'
-    }), 403
 
 '''
 @TODO implement error handler for 404

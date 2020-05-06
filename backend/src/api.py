@@ -86,7 +86,7 @@ def create_drink(payload):
     try:
         drink = Drink(
             title=new_title,
-            recipe=json.dumps([new_recipe])
+            recipe=json.dumps(new_recipe)
         )
         drink.insert()
 

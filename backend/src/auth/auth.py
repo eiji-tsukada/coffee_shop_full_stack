@@ -5,10 +5,6 @@ from jose import jwt
 from urllib.request import urlopen
 
 
-# AUTH0_DOMAIN = 'udacity-fsnd.auth0.com'
-# ALGORITHMS = ['RS256']
-# API_AUDIENCE = 'dev'
-
 AUTH0_DOMAIN = 'fsndet.auth0.com'
 ALGORITHMS = ['RS256']
 API_AUDIENCE = 'coffeeshop'
@@ -86,7 +82,7 @@ def check_permissions(permission, payload):
         raise AuthError({
             'code': 'unauthorized',
             'description': 'Permissions not found'
-        }, 403)
+        }, 401)
     return True
 
 '''
